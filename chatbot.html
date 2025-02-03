@@ -7,8 +7,8 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: #d8a4a4;
-            color: #333;
+            background: #1e1e2f;
+            color: #fff;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -16,9 +16,10 @@
             margin: 0;
             overflow: hidden;
             flex-direction: column;
+            position: relative;
         }
         .background {
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
@@ -30,7 +31,7 @@
             position: absolute;
             width: 50px;
             height: 50px;
-            background: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.2);
             border-radius: 50%;
             animation: moveObject 10s linear infinite;
         }
@@ -40,23 +41,26 @@
             100% { transform: translateY(0) translateX(0); }
         }
         .chat-container {
-            width: 400px;
-            background: #f9f9f9;
+            width: 420px;
+            background: #2d2d3a;
             padding: 20px;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
             display: flex;
             flex-direction: column;
             position: relative;
+            max-height: 500px;
+            overflow: hidden;
         }
         .chat-box {
-            height: 300px;
+            height: 350px;
             overflow-y: auto;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid #444;
             padding-bottom: 10px;
             padding: 10px;
             display: flex;
             flex-direction: column;
+            animation: fadeIn 1s ease-out;
         }
         .input-container {
             display: flex;
@@ -65,14 +69,17 @@
         input {
             flex: 1;
             padding: 12px;
-            border: 1px solid #ccc;
+            border: 1px solid #444;
             border-radius: 20px;
             font-size: 16px;
             outline: none;
             transition: 0.3s;
+            background: #2b2b39;
+            color: #fff;
         }
         input:focus {
             border-color: #ff7e5f;
+            background: #383848;
         }
         .send-btn {
             background: linear-gradient(135deg, #ff7e5f, #feb47b);
@@ -90,7 +97,7 @@
             font-weight: bold;
             width: 45px;
             height: 45px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
         }
         .send-btn:hover {
             background: linear-gradient(135deg, #feb47b, #ff7e5f);
@@ -98,17 +105,19 @@
         }
         .message {
             margin: 5px 0;
-            padding: 10px;
-            border-radius: 10px;
+            padding: 12px;
+            border-radius: 15px;
             max-width: 75%;
             word-wrap: break-word;
+            opacity: 0;
+            animation: fadeInMessage 0.5s forwards;
         }
         .user-message {
-            background: #d1e7fd;
+            background: #5c9fd4;
             align-self: flex-end;
         }
         .bot-message {
-            background: #e0e0e0;
+            background: #4f4f4f;
             align-self: flex-start;
         }
         h1 {
@@ -116,11 +125,20 @@
             font-size: xx-large;
             color: #fff;
             margin-bottom: 5px;
+            font-weight: 600;
         }
         p {
             text-align: center;
-            color: #fff;
+            color: #ccc;
             margin-bottom: 20px;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        @keyframes fadeInMessage {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
         }
     </style>
 </head>
